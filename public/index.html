@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="div_conteiner_">
+        <nav class="nav-">
+            <div class="div-contenedorNav">
+                <h1 class="titl-nav">Proyecto de Prueba</h1>
+                <p class="tex-exp">En este proyecto pruebo la API de Stripe</p>
+                <a href="https://github.com/emanuelcasella70/Api-stripe" class="redi">Ver codigo funte (BACKEND)</a>
+            </div>
+        </nav>
+        <section class="div_conteiner_section">
+            <form id="form_art" class="formulario">
+                <label for="nombre_ART">Introduce el nombre del articulo</label>
+                <br>
+                <input name="arti" id="nombre_ART">    
+                <br>
+                <br>
+                <label for="valor">Introduce el valor del articulo</label>
+                <br>
+                <input type="number" name="valor" id="valor">     
+                <br>       
+                <br>       
+                <button type="submit" id="checkout">
+                    Iniciar Compra
+                </button>
+            </form>
+        </section>
+    </div>
+    <script> 
+        const art = document.getElementById("form_art")
+        art.addEventListener("submit", async (event)=> {
+            event.preventDefault()
+             
+            const datosArt ={
+                nombre: art.elements.arti.value,
+                valor: art.elements.valor.value,
+            }
+
+            const res = await fetch("/checkout", {
+                method: "post",
+                headers: {
+                 "Content-Type": "application/json"
+                },
+                body: JSON.stringify(datosArt)
+            })
+            const data = await res.json()
+            console.log(data)
+            window.location.href = data.url
+        })
+    </script>
+    
+</body>
+</html>
