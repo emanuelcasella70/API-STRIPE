@@ -1,0 +1,1 @@
+En esta ocasión estoy usando la api de Stripe que te permite hacer pagos con tarjetas a través de tu sitio web, hice una simple interfaz de usuario donde el cliente puede poner el producto y el valor que desea y esto genera una orden de compra.
